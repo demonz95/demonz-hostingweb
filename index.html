@@ -1,103 +1,73 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>Panel Demonz</title>
-  <link href="style.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Franki Hosting</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <header class="hero-custom">
+
+  <header>
+    <img src="hero.jpg" alt="Banner" class="hero-bg" />
     <div class="overlay">
-      <h1>DEMONZ STORE</h1>
-      <p>Panel murah, stabil & terpercaya</p>
+      <h1>Kebutuhan Anda</h1>
+      <p>Panel berkualitas tinggi, VPS cepat, dan script otomatis dengan harga terjangkau. Layanan 24/7 dengan dukungan teknis profesional.</p>
     </div>
   </header>
 
   <main>
-    <section class="product-list">
+    <div class="product-list">
       <div class="product-card">
         <h2>PANEL 4GB</h2>
         <p>Panel dengan resource 4GB untuk kebutuhan dasar Anda.</p>
-        <span class="price">Rp 3.000</span>
+        <p class="price">Rp 3.000</p>
         <button data-name="Panel 4GB" data-price="3">+ Keranjang</button>
-      </div>
-      <div class="product-card">
-        <h2>PANEL 5GB</h2>
-        <p>Panel dengan resource 5GB untuk kebutuhan ringan.</p>
-        <span class="price">Rp 4.000</span>
-        <button data-name="Panel 5GB" data-price="4">+ Keranjang</button>
       </div>
       <div class="product-card">
         <h2>PANEL 7GB</h2>
         <p>Panel dengan resource 7GB untuk kebutuhan menengah.</p>
-        <span class="price">Rp 5.000</span>
+        <p class="price">Rp 5.000</p>
         <button data-name="Panel 7GB" data-price="5">+ Keranjang</button>
       </div>
       <div class="product-card">
         <h2>PANEL 10GB</h2>
         <p>Panel dengan resource 10GB untuk kebutuhan tinggi.</p>
-        <span class="price">Rp 7.000</span>
+        <p class="price">Rp 7.000</p>
         <button data-name="Panel 10GB" data-price="7">+ Keranjang</button>
       </div>
       <div class="product-card">
         <h2>PANEL UNLIMITED</h2>
         <p>Panel dengan resource tidak terbatas untuk kebutuhan berat.</p>
-        <span class="price">Rp 10.000</span>
+        <p class="price">Rp 10.000</p>
         <button data-name="Panel Unlimited" data-price="10">+ Keranjang</button>
       </div>
-    </section>
-
-    <section class="contact">
-      <h2>Hubungi Kami</h2>
-      <p>📞 WhatsApp: <a href="https://wa.me/628892119837">08892119837</a></p>
-      <p>📧 Email: <a href="mailto:wanzlonely04@gmail.com">wanzlonely04@gmail.com</a></p>
-      <p>📸 Instagram: <a href="https://instagram.com/demonz_lonely">@demonz_lonely</a></p>
-    </section>
+    </div>
   </main>
 
-  <!-- Tombol Pesan -->
-  <button id="checkout-btn" style="
-    position: fixed; 
-    bottom: 100px; 
-    left: 20px; 
-    padding: 14px 26px; 
-    background-color: green; 
-    color: white; 
-    border: none; 
-    border-radius: 10px; 
-    font-size: 18px;
-    cursor: pointer; 
-    z-index: 999;
-  ">
-    Pesan
-  </button>
+  <!-- Cart Icon -->
+  <div class="cart-icon" id="cart-btn">
+    🛒 <span id="cart-count">0</span>
+  </div>
 
-  <!-- Logo Troli -->
-  <div class="cart-fab" id="cart-btn" onclick="generateWhatsAppMessage()" style="
-    position: fixed; 
-    bottom: 20px; 
-    right: 20px; 
-    background-color: #ff6347; 
-    color: white; 
-    padding: 14px 20px; 
-    border-radius: 50%; 
-    font-size: 24px; 
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
-    cursor: pointer; 
-    z-index: 999;
-  ">
-    🛒<span id="cart-count">0</span>
+  <!-- Popup Cart -->
+  <div id="cart-modal" class="cart-modal">
+    <div class="cart-header">
+      <h2>Keranjang Belanja</h2>
+      <button id="close-cart">&times;</button>
+    </div>
+    <div id="cart-items-container"></div>
+    <div class="cart-footer">
+      <p><strong>Total:</strong> <span id="cart-total">Rp 0</span></p>
+      <button class="whatsapp-button" onclick="generateWhatsAppMessage()">Pesan via WhatsApp</button>
+    </div>
   </div>
 
   <footer>
-    © 2025 Panel Demonz. All rights reserved.
+    &copy; 2025 Franki Hosting. All rights reserved.
   </footer>
 
   <script src="script.js"></script>
-  <script>
-    document.getElementById("checkout-btn").addEventListener("click", generateWhatsAppMessage);
-  </script>
 </body>
 </html>
