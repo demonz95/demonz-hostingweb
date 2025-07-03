@@ -8,33 +8,33 @@ body {
 header {
   position: relative;
   height: 300px;
+  background-color: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   overflow: hidden;
 }
 
-.hero-bg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.6);
-}
-
-.overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
+.logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: contain;
+  margin-bottom: 10px;
 }
 
 .overlay h1 {
-  font-size: 32px;
-  margin-bottom: 10px;
+  font-size: 28px;
   color: #00bfff;
+  margin-bottom: 10px;
 }
 
 .overlay p {
-  font-size: 16px;
-  color: #ddd;
+  font-size: 14px;
+  color: #ccc;
+  padding: 0 20px;
 }
 
 main {
@@ -51,6 +51,10 @@ main {
   background-color: #1f2a40;
   padding: 20px;
   border-radius: 10px;
+  transition: transform 0.2s ease;
+}
+.product-card:hover {
+  transform: scale(1.02);
 }
 
 .product-card h2 {
@@ -75,87 +79,88 @@ button {
   padding: 8px 15px;
   border-radius: 6px;
   cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background-color: #2563eb;
-  transform: scale(1.05);
+button:active {
+  transform: scale(0.98);
+}
+
+footer {
+  text-align: center;
+  margin: 40px 0 20px;
+  font-size: 13px;
+  color: #999;
 }
 
 .cart-icon {
-  position: fixed !important;
-  bottom: 20px !important;
-  right: 20px !important;
-  z-index: 999 !important;
-  font-size: 24px !important;
-  padding: 10px !important;
-  background: #3b82f6;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  font-size: 22px;
+  background-color: #3b82f6;
+  color: white;
+  padding: 12px;
   border-radius: 50%;
   cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.4);
 }
 
-.cart-icon span {
-  background: #ef4444;
+.cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: red;
   color: white;
-  border-radius: 50%;
-  padding: 2px 6px;
   font-size: 12px;
-  margin-left: 5px;
+  padding: 2px 6px;
+  border-radius: 50%;
 }
 
-.cart-modal {
+.cart-panel {
   position: fixed;
   top: 0;
   right: 0;
-  width: 100%;
-  max-width: 400px;
+  width: 80%;
+  max-width: 360px;
   height: 100%;
-  background: #1e293b;
-  box-shadow: -2px 0 10px rgba(0,0,0,0.5);
-  z-index: 9999;
+  background-color: #1e293b;
+  color: #fff;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.3);
   padding: 20px;
-  display: none;
-  flex-direction: column;
+  z-index: 1000;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
 }
 
-.cart-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.cart-panel.active {
+  transform: translateX(0);
 }
 
-.cart-header h2 {
-  color: #fff;
+.cart-panel h2 {
+  margin-top: 0;
 }
 
-.cart-footer {
-  margin-top: auto;
-  padding-top: 10px;
-  border-top: 1px solid #444;
-}
-
-#close-cart {
+.close-cart {
+  position: absolute;
+  top: 10px;
+  right: 20px;
   font-size: 24px;
-  background: transparent;
-  border: none;
-  color: white;
   cursor: pointer;
 }
 
-.cart-item {
-  display: flex;
-  justify-content: space-between;
-  margin: 10px 0;
-  color: #fff;
+.cart-total {
+  font-weight: bold;
+  margin-top: 20px;
+  text-align: right;
 }
 
-.whatsapp-button {
-  font-size: 18px !important;
-  padding: 12px 20px !important;
-  border-radius: 8px !important;
-  background-color: #25d366;
-  color: #fff;
-  border: none;
-  cursor: pointer;
+@media (max-width: 480px) {
+  .overlay h1 {
+    font-size: 22px;
+  }
+  .overlay p {
+    font-size: 13px;
+  }
 }
