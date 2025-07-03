@@ -1,20 +1,23 @@
-const cart = [];
+let cart = [];
 const cartCount = document.getElementById('cart-count');
 const cartItems = document.getElementById('cart-items');
 const cartTotal = document.getElementById('cart-total');
-const cartPanel = document.getElementById('cart-panel');
+const whatsappBtn = document.getElementById('whatsapp-checkout');
 
 function toggleCart() {
-  cartPanel.classList.toggle('active');
+  document.getElementById('cart-panel').classList.toggle('active');
 }
 
-document.querySelectorAll('button').forEach((btn) => {
+document.querySelectorAll('.product-card button').forEach((btn) => {
   btn.addEventListener('click', () => {
     const card = btn.parentElement;
     const name = card.querySelector('h2').innerText;
     const priceText = card.querySelector('.price').innerText.replace(/[^\d]/g, '');
     const price = parseInt(priceText);
     const existing = cart.find(item => item.name === name);
+
+    // Efek animasi
+    showAddedEffect(btn);
 
     if (existing) {
       existing.qty += 1;
@@ -23,9 +26,35 @@ document.querySelectorAll('button').forEach((btn) => {
     }
 
     updateCart();
-    showAddedNotification(name);
   });
 });
+
+function showAddedEffect(button) {
+  const msg = document.createElement('span');
+  msg.innerText = '✔ Ditambahkan!';
+  msg.style.position = 'absolute';
+  msg.style.background = '#22c55e';
+  msg.style.color = 'white';
+  msg.style.padding = '4px 8px';
+  msg.style.borderRadius = '6px';
+  msg.style.fontSize = '12px';
+  msg.style.zIndex = 999;
+  msg.style.top = `${button.offsetTop - 30}px`;
+  msg.style.left = `${button.offsetLeft}px`;
+  msg.style.opacity = 1;
+  msg.style.transition = 'all 0.6s ease';
+
+  document.body.appendChild(msg);
+
+  setTimeout(() => {
+    msg.style.transform = 'translateY(-20px)';
+    msg.style.opacity = 0;
+  }, 100);
+
+  setTimeout(() => {
+    msg.remove();
+  }, 700);
+}
 
 function updateCart() {
   cartItems.innerHTML = '';
@@ -34,46 +63,24 @@ function updateCart() {
 
   cart.forEach(item => {
     const itemEl = document.createElement('div');
-    itemEl.innerHTML = `<strong>${item.name}</strong><br>${item.qty} x Rp ${item.price.toLocaleString()} <hr style="border: 0.5px solid #333"/>`;
+    itemEl.innerHTML = `<strong>${item.name}</strong><br>${item.qty} x Rp ${item.price.toLocaleString('id-ID')}<hr style="border: 0.5px solid #333"/>`;
     cartItems.appendChild(itemEl);
     total += item.price * item.qty;
     itemCount += item.qty;
   });
 
   cartCount.innerText = itemCount;
-  cartTotal.innerText = 'Total: Rp ' + total.toLocaleString();
-}
+  cartTotal.innerText = 'Total: Rp ' + total.toLocaleString('id-ID');
 
-function showAddedNotification(itemName) {
-  const notif = document.getElementById('added-notification');
-  notif.innerText = `${itemName} ditambahkan ke keranjang`;
-  notif.classList.add('show');
+  // Update WhatsApp link
+  let message = `📢 *PESANAN BARU - DEMONZ HOSTING* 📢\n\nHalo Admin,\nSaya ingin memesan produk berikut:\n\n`;
 
-  setTimeout(() => {
-    notif.classList.remove('show');
-  }, 2000);
-}
-
-function pesanSekarang() {
-  if (cart.length === 0) {
-    alert("Keranjang kosong.");
-    return;
-  }
-
-  let message = "📢 *PESANAN BARU - DEMONZ HOSTING* 📢%0A%0A";
-  message += "Halo Admin Demonz Hosting,%0ASaya ingin memesan produk berikut:%0A%0A";
-  message += "📋 *Daftar Pesanan:*%0A";
-
-  let total = 0;
   cart.forEach(item => {
-    message += `➡️ *${item.name}* (${item.qty}x)%0A💵 Rp ${item.price * item.qty}.000%0A`;
-    total += item.price * item.qty;
+    message += `➡️ *${item.name}* (${item.qty}x)\n💵 Rp ${(item.price * item.qty).toLocaleString('id-ID')}\n\n`;
   });
 
-  message += `%0A💰 *Total Pembayaran:* Rp ${total}.000%0A`;
-  message += `Metode pembayaran: Transfer / E-wallet / QRIS%0A%0A`;
-  message += `Mohon konfirmasi ketersediaan dan detail pembayaran.`;
+  message += `💰 *Total:* Rp ${total.toLocaleString('id-ID')}\n\nMohon konfirmasi ketersediaan dan cara pembayaran. Terima kasih!`;
 
-  const phone = "628892119837";
-  window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+  const encodedMsg = encodeURIComponent(message);
+  whatsappBtn.href = `https://wa.me/628892119837?text=${encodedMsg}`;
 }
