@@ -154,6 +154,24 @@
       text-align: right;
     }
 
+    #added-notification {
+      position: fixed;
+      bottom: 100px;
+      right: 25px;
+      background: #10b981;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 8px;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 2000;
+      font-size: 14px;
+    }
+
+    #added-notification.show {
+      opacity: 1;
+    }
+
     @media (max-width: 480px) {
       .overlay h1 {
         font-size: 22px;
@@ -176,54 +194,14 @@
 
   <main>
     <div class="product-list">
-      <div class="product-card">
-        <h2>PANEL 4GB</h2>
-        <p>Panel dengan resource 4GB untuk kebutuhan dasar Anda.</p>
-        <p class="price">Rp 4.000</p>
-        <button>+ Keranjang</button>
-      </div>
-      <div class="product-card">
-        <h2>PANEL 5GB</h2>
-        <p>Panel dengan resource 5GB untuk kebutuhan ringan menengah.</p>
-        <p class="price">Rp 5.000</p>
-        <button>+ Keranjang</button>
-      </div>
-      <div class="product-card">
-        <h2>PANEL 6GB</h2>
-        <p>Panel dengan resource 6GB cocok untuk penggunaan stabil.</p>
-        <p class="price">Rp 6.000</p>
-        <button>+ Keranjang</button>
-      </div>
-      <div class="product-card">
-        <h2>PANEL 7GB</h2>
-        <p>Panel dengan resource 7GB untuk kebutuhan menengah tinggi.</p>
-        <p class="price">Rp 6.500</p>
-        <button>+ Keranjang</button>
-      </div>
-      <div class="product-card">
-        <h2>PANEL 8GB</h2>
-        <p>Panel dengan resource 8GB untuk penggunaan intensif.</p>
-        <p class="price">Rp 7.000</p>
-        <button>+ Keranjang</button>
-      </div>
-      <div class="product-card">
-        <h2>PANEL 9GB</h2>
-        <p>Panel dengan resource 9GB untuk aplikasi berat.</p>
-        <p class="price">Rp 8.000</p>
-        <button>+ Keranjang</button>
-      </div>
-      <div class="product-card">
-        <h2>PANEL 10GB</h2>
-        <p>Panel dengan resource 10GB untuk kebutuhan sangat tinggi.</p>
-        <p class="price">Rp 9.000</p>
-        <button>+ Keranjang</button>
-      </div>
-      <div class="product-card">
-        <h2>PANEL UNLIMITED</h2>
-        <p>Panel dengan resource tidak terbatas untuk kebutuhan ekstrim.</p>
-        <p class="price">Rp 10.000</p>
-        <button>+ Keranjang</button>
-      </div>
+      <div class="product-card"><h2>4GB</h2><p class="price">Rp 4000</p><button>+ Keranjang</button></div>
+      <div class="product-card"><h2>5GB</h2><p class="price">Rp 5000</p><button>+ Keranjang</button></div>
+      <div class="product-card"><h2>6GB</h2><p class="price">Rp 6000</p><button>+ Keranjang</button></div>
+      <div class="product-card"><h2>7GB</h2><p class="price">Rp 6500</p><button>+ Keranjang</button></div>
+      <div class="product-card"><h2>8GB</h2><p class="price">Rp 7000</p><button>+ Keranjang</button></div>
+      <div class="product-card"><h2>9GB</h2><p class="price">Rp 8000</p><button>+ Keranjang</button></div>
+      <div class="product-card"><h2>10GB</h2><p class="price">Rp 9000</p><button>+ Keranjang</button></div>
+      <div class="product-card"><h2>UNLI</h2><p class="price">Rp 10000</p><button>+ Keranjang</button></div>
     </div>
   </main>
 
@@ -236,49 +214,43 @@
     <h2>Keranjang Belanja</h2>
     <div id="cart-items"></div>
     <div class="cart-total" id="cart-total">Total: Rp 0</div>
-    <button style="margin-top:20px;width:100%;background-color:#16a34a;">Pesan Sekarang</button>
+    <button onclick="pesanSekarang()" style="margin-top: 20px; background-color: #22c55e;">Pesan Sekarang via WhatsApp</button>
   </div>
+
+  <div id="added-notification"></div>
 
   <footer>
     © 2025 DEMONZ HOSTING. All rights reserved.
   </footer>
 
   <script>
-    let count = 0;
+    const cart = [];
     const cartCount = document.getElementById('cart-count');
     const cartItems = document.getElementById('cart-items');
     const cartTotal = document.getElementById('cart-total');
-    const cart = [];
+    const cartPanel = document.getElementById('cart-panel');
 
     function toggleCart() {
-      document.getElementById('cart-panel').classList.toggle('active');
+      cartPanel.classList.toggle('active');
     }
 
-    document.querySelectorAll('button').forEach((btn, index) => {
-      if (btn.innerText.includes('+')) {
-        btn.addEventListener('click', () => {
-          const card = btn.parentElement;
-          const name = card.querySelector('h2').innerText;
-          const priceText = card.querySelector('.price').innerText.replace(/[^\d]/g, '');
-          const price = parseInt(priceText);
-          const existing = cart.find(item => item.name === name);
+    document.querySelectorAll('button').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const card = btn.parentElement;
+        const name = card.querySelector('h2').innerText;
+        const priceText = card.querySelector('.price').innerText.replace(/[^\d]/g, '');
+        const price = parseInt(priceText);
+        const existing = cart.find(item => item.name === name);
 
-          if (existing) {
-            existing.qty += 1;
-          } else {
-            cart.push({ name, price, qty: 1 });
-          }
+        if (existing) {
+          existing.qty += 1;
+        } else {
+          cart.push({ name, price, qty: 1 });
+        }
 
-          btn.innerText = '✓ Ditambahkan';
-          btn.style.backgroundColor = '#22c55e';
-          setTimeout(() => {
-            btn.innerText = '+ Keranjang';
-            btn.style.backgroundColor = '#3b82f6';
-          }, 1000);
-
-          updateCart();
-        });
-      }
+        updateCart();
+        showAddedNotification(name);
+      });
     });
 
     function updateCart() {
@@ -288,7 +260,7 @@
 
       cart.forEach(item => {
         const itemEl = document.createElement('div');
-        itemEl.innerHTML = `<strong>${item.name}</strong><br>${item.qty} x Rp ${item.price.toLocaleString()} <hr style="border: 0.5px solid #333"/>`;
+        itemEl.innerHTML = `<strong>${item.name}</strong><br>${item.qty} x Rp ${item.price.toLocaleString()}<hr style="border: 0.5px solid #333"/>`;
         cartItems.appendChild(itemEl);
         total += item.price * item.qty;
         itemCount += item.qty;
@@ -296,6 +268,34 @@
 
       cartCount.innerText = itemCount;
       cartTotal.innerText = 'Total: Rp ' + total.toLocaleString();
+    }
+
+    function showAddedNotification(itemName) {
+      const notif = document.getElementById('added-notification');
+      notif.innerText = `${itemName} ditambahkan ke keranjang`;
+      notif.classList.add('show');
+      setTimeout(() => {
+        notif.classList.remove('show');
+      }, 2000);
+    }
+
+    function pesanSekarang() {
+      if (cart.length === 0) {
+        alert("Keranjang kosong.");
+        return;
+      }
+
+      let message = "📢 *PESANAN BARU - DEMONZ HOSTING* 📢%0A%0A";
+      message += "Halo Admin,%0ASaya ingin memesan produk berikut:%0A%0A";
+      cart.forEach(item => {
+        message += `➡️ *${item.name}* (${item.qty}x)%0A💵 Rp ${item.price * item.qty}.000%0A`;
+      });
+      const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      message += `%0A💰 *Total:* Rp ${total}.000%0A%0A`;
+      message += `Mohon konfirmasi ketersediaan dan cara pembayaran. Terima kasih!`;
+
+      const phone = "628892119837";
+      window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
     }
   </script>
 </body>
