@@ -8,8 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <header>
-    <img src="bg.jpg" alt="Panel Demonz" class="hero-bg" />
+  <header class="hero-custom">
     <div class="overlay">
       <h1>DEMONZ STORE</h1>
       <p>Panel murah, stabil & terpercaya</p>
@@ -22,31 +21,31 @@
         <h2>PANEL 4GB</h2>
         <p>Panel dengan resource 4GB untuk kebutuhan dasar Anda.</p>
         <span class="price">Rp 3.000</span>
-        <button>+ Keranjang</button>
+        <button data-name="Panel 4GB" data-price="3">+ Keranjang</button>
       </div>
       <div class="product-card">
         <h2>PANEL 5GB</h2>
         <p>Panel dengan resource 5GB untuk kebutuhan ringan.</p>
         <span class="price">Rp 4.000</span>
-        <button>+ Keranjang</button>
+        <button data-name="Panel 5GB" data-price="4">+ Keranjang</button>
       </div>
       <div class="product-card">
         <h2>PANEL 7GB</h2>
         <p>Panel dengan resource 7GB untuk kebutuhan menengah.</p>
         <span class="price">Rp 5.000</span>
-        <button>+ Keranjang</button>
+        <button data-name="Panel 7GB" data-price="5">+ Keranjang</button>
       </div>
       <div class="product-card">
         <h2>PANEL 10GB</h2>
         <p>Panel dengan resource 10GB untuk kebutuhan tinggi.</p>
         <span class="price">Rp 7.000</span>
-        <button>+ Keranjang</button>
+        <button data-name="Panel 10GB" data-price="7">+ Keranjang</button>
       </div>
       <div class="product-card">
         <h2>PANEL UNLIMITED</h2>
         <p>Panel dengan resource tidak terbatas untuk kebutuhan berat.</p>
         <span class="price">Rp 10.000</span>
-        <button>+ Keranjang</button>
+        <button data-name="Panel Unlimited" data-price="10">+ Keranjang</button>
       </div>
     </section>
 
@@ -58,8 +57,14 @@
     </section>
   </main>
 
+  <div class="cart-fab" id="cart-btn" onclick="generateWhatsAppMessage()">
+    🛒<span id="cart-count">0</span>
+  </div>
+
   <footer>
     &copy; 2025 Panel Demonz. All rights reserved.
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
