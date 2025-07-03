@@ -2,6 +2,22 @@ const cart = [];
 const cartBtn = document.getElementById("cart-btn");
 const cartCount = document.getElementById("cart-count");
 
+// Tambahkan container keranjang
+const cartPopup = document.createElement("div");
+cartPopup.id = "cart-popup";
+cartPopup.style.display = "none";
+cartPopup.style.position = "fixed";
+cartPopup.style.bottom = "70px";
+cartPopup.style.right = "20px";
+cartPopup.style.backgroundColor = "#1f2a40";
+cartPopup.style.padding = "15px";
+cartPopup.style.borderRadius = "8px";
+cartPopup.style.color = "#fff";
+cartPopup.style.boxShadow = "0 4px 8px rgba(0,0,0,0.2)";
+cartPopup.style.maxWidth = "250px";
+cartPopup.style.zIndex = "9999";
+document.body.appendChild(cartPopup);
+
 document.querySelectorAll("button[data-name]").forEach(btn => {
   btn.addEventListener("click", () => {
     const name = btn.dataset.name;
@@ -13,12 +29,27 @@ document.querySelectorAll("button[data-name]").forEach(btn => {
       cart.push({ name, price, qty: 1 });
     }
     updateCartCount();
+    updateCartPopup();
   });
 });
 
 function updateCartCount() {
   const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
   cartCount.innerText = totalItems;
+}
+
+function updateCartPopup() {
+  if (cart.length === 0) {
+    cartPopup.innerHTML = "<p>Keranjang kosong.</p>";
+    return;
+  }
+
+  let html = "<strong>🛒 Keranjang:</strong><ul style='padding-left: 20px'>";
+  cart.forEach(item => {
+    html += `<li>${item.qty}x ${item.name}</li>`;
+  });
+  html += "</ul>";
+  cartPopup.innerHTML = html;
 }
 
 function generateWhatsAppMessage() {
@@ -48,3 +79,8 @@ function generateWhatsAppMessage() {
   const phone = "628892119837";
   window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
 }
+
+// Toggle popup saat klik troli
+cartBtn.addEventListener("click", () => {
+  cartPopup.style.display = cartPopup.style.display === "none" ? "block" : "none";
+});
