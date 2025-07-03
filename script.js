@@ -1,29 +1,21 @@
 const cart = [];
 const cartBtn = document.getElementById("cart-btn");
 const cartCount = document.getElementById("cart-count");
+const cartModal = document.getElementById("cart-modal");
+const cartItemsContainer = document.getElementById("cart-items-container");
+const cartTotalDisplay = document.getElementById("cart-total");
+const closeCartBtn = document.getElementById("close-cart");
 
 document.querySelectorAll("button[data-name]").forEach(btn => {
   btn.addEventListener("click", () => {
     const name = btn.dataset.name;
     const price = parseInt(btn.dataset.price);
     const existing = cart.find(item => item.name === name);
-
     if (existing) {
       existing.qty += 1;
     } else {
       cart.push({ name, price, qty: 1 });
     }
-
-    // Ubah tampilan tombol menjadi "✓ Ditambahkan"
-    btn.textContent = "✓ Ditambahkan";
-    btn.classList.add("added-effect");
-
-    // Kembalikan ke tampilan semula setelah delay
-    setTimeout(() => {
-      btn.textContent = `+ Keranjang`;
-      btn.classList.remove("added-effect");
-    }, 1500);
-
     updateCartCount();
   });
 });
@@ -31,6 +23,35 @@ document.querySelectorAll("button[data-name]").forEach(btn => {
 function updateCartCount() {
   const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
   cartCount.innerText = totalItems;
+}
+
+cartBtn.addEventListener("click", () => {
+  renderCartItems();
+  cartModal.style.display = "flex";
+});
+
+closeCartBtn.addEventListener("click", () => {
+  cartModal.style.display = "none";
+});
+
+function renderCartItems() {
+  cartItemsContainer.innerHTML = "";
+  let total = 0;
+
+  cart.forEach(item => {
+    const itemTotal = item.price * item.qty;
+    total += itemTotal;
+
+    const div = document.createElement("div");
+    div.className = "cart-item";
+    div.innerHTML = `
+      <p><strong>${item.name}</strong><br>${item.qty} x Rp ${item.price}.000</p>
+      <p style="color:#22c55e;">Rp ${itemTotal}.000</p>
+    `;
+    cartItemsContainer.appendChild(div);
+  });
+
+  cartTotalDisplay.innerText = `Rp ${total}.000`;
 }
 
 function generateWhatsAppMessage() {
