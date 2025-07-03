@@ -5,182 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>DEMONZ HOSTING</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet"/>
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      background-color: #0e0e0e;
-      color: #fff;
-    }
-
-    header {
-      position: relative;
-      height: 300px;
-      overflow: hidden;
-      background-color: #111;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .logo {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: contain;
-      margin-bottom: 10px;
-    }
-
-    .overlay h1 {
-      font-size: 28px;
-      color: #00bfff;
-      margin-bottom: 10px;
-    }
-
-    .overlay p {
-      font-size: 14px;
-      color: #ccc;
-      padding: 0 20px;
-    }
-
-    main {
-      padding: 20px;
-    }
-
-    .product-list {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .product-card {
-      background-color: #1f2a40;
-      padding: 20px;
-      border-radius: 10px;
-    }
-
-    .product-card h2 {
-      margin: 0 0 10px;
-      color: #60a5fa;
-    }
-
-    .product-card p {
-      margin: 0 0 10px;
-    }
-
-    .price {
-      color: #22c55e;
-      font-weight: bold;
-    }
-
-    button {
-      margin-top: 10px;
-      background-color: #3b82f6;
-      color: white;
-      border: none;
-      padding: 8px 15px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    footer {
-      text-align: center;
-      margin: 40px 0 20px;
-      font-size: 13px;
-      color: #999;
-    }
-
-    .cart-icon {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 999;
-      font-size: 22px;
-      background-color: #3b82f6;
-      color: white;
-      padding: 12px;
-      border-radius: 50%;
-      cursor: pointer;
-    }
-
-    .cart-badge {
-      position: absolute;
-      top: -5px;
-      right: -5px;
-      background: red;
-      color: white;
-      font-size: 12px;
-      padding: 2px 6px;
-      border-radius: 50%;
-    }
-
-    .cart-panel {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 80%;
-      max-width: 360px;
-      height: 100%;
-      background-color: #1e293b;
-      color: #fff;
-      box-shadow: -2px 0 5px rgba(0,0,0,0.3);
-      padding: 20px;
-      z-index: 1000;
-      transform: translateX(100%);
-      transition: transform 0.3s ease;
-    }
-
-    .cart-panel.active {
-      transform: translateX(0);
-    }
-
-    .cart-panel h2 {
-      margin-top: 0;
-    }
-
-    .close-cart {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      font-size: 24px;
-      cursor: pointer;
-    }
-
-    .cart-total {
-      font-weight: bold;
-      margin-top: 20px;
-      text-align: right;
-    }
-
-    #added-notification {
-      position: fixed;
-      bottom: 100px;
-      right: 25px;
-      background: #10b981;
-      color: white;
-      padding: 8px 15px;
-      border-radius: 8px;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      z-index: 2000;
-      font-size: 14px;
-    }
-
-    #added-notification.show {
-      opacity: 1;
-    }
-
-    @media (max-width: 480px) {
-      .overlay h1 {
-        font-size: 22px;
-      }
-      .overlay p {
-        font-size: 13px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
@@ -194,14 +19,54 @@
 
   <main>
     <div class="product-list">
-      <div class="product-card"><h2>4GB</h2><p class="price">Rp 4000</p><button>+ Keranjang</button></div>
-      <div class="product-card"><h2>5GB</h2><p class="price">Rp 5000</p><button>+ Keranjang</button></div>
-      <div class="product-card"><h2>6GB</h2><p class="price">Rp 6000</p><button>+ Keranjang</button></div>
-      <div class="product-card"><h2>7GB</h2><p class="price">Rp 6500</p><button>+ Keranjang</button></div>
-      <div class="product-card"><h2>8GB</h2><p class="price">Rp 7000</p><button>+ Keranjang</button></div>
-      <div class="product-card"><h2>9GB</h2><p class="price">Rp 8000</p><button>+ Keranjang</button></div>
-      <div class="product-card"><h2>10GB</h2><p class="price">Rp 9000</p><button>+ Keranjang</button></div>
-      <div class="product-card"><h2>UNLI</h2><p class="price">Rp 10000</p><button>+ Keranjang</button></div>
+      <div class="product-card">
+        <h2>4GB</h2>
+        <p>Panel dengan resource 4GB.</p>
+        <p class="price">Rp 4000</p>
+        <button>+ Keranjang</button>
+      </div>
+      <div class="product-card">
+        <h2>5GB</h2>
+        <p>Panel dengan resource 5GB.</p>
+        <p class="price">Rp 5000</p>
+        <button>+ Keranjang</button>
+      </div>
+      <div class="product-card">
+        <h2>6GB</h2>
+        <p>Panel dengan resource 6GB.</p>
+        <p class="price">Rp 6000</p>
+        <button>+ Keranjang</button>
+      </div>
+      <div class="product-card">
+        <h2>7GB</h2>
+        <p>Panel dengan resource 7GB.</p>
+        <p class="price">Rp 6500</p>
+        <button>+ Keranjang</button>
+      </div>
+      <div class="product-card">
+        <h2>8GB</h2>
+        <p>Panel dengan resource 8GB.</p>
+        <p class="price">Rp 7000</p>
+        <button>+ Keranjang</button>
+      </div>
+      <div class="product-card">
+        <h2>9GB</h2>
+        <p>Panel dengan resource 9GB.</p>
+        <p class="price">Rp 8000</p>
+        <button>+ Keranjang</button>
+      </div>
+      <div class="product-card">
+        <h2>10GB</h2>
+        <p>Panel dengan resource 10GB.</p>
+        <p class="price">Rp 9000</p>
+        <button>+ Keranjang</button>
+      </div>
+      <div class="product-card">
+        <h2>UNLI</h2>
+        <p>Panel Unlimited untuk kebutuhan besar.</p>
+        <p class="price">Rp 10000</p>
+        <button>+ Keranjang</button>
+      </div>
     </div>
   </main>
 
@@ -214,89 +79,22 @@
     <h2>Keranjang Belanja</h2>
     <div id="cart-items"></div>
     <div class="cart-total" id="cart-total">Total: Rp 0</div>
-    <button onclick="pesanSekarang()" style="margin-top: 20px; background-color: #22c55e;">Pesan Sekarang via WhatsApp</button>
+    <a id="whatsapp-checkout" href="#" class="whatsapp-button" target="_blank">Pesan Sekarang via WhatsApp</a>
   </div>
 
-  <div id="added-notification"></div>
-
   <footer>
-    © 2025 DEMONZ HOSTING. All rights reserved.
+    <div class="footer-grid">
+      <div class="footer-section">
+        <p>© 2025 <strong>DEMONZ HOSTING</strong><br/>All rights reserved.</p>
+      </div>
+      <div class="footer-section">
+        <p><strong>📱 WhatsApp:</strong><br> <a href="https://wa.me/628892119837" target="_blank">0889-2119-837</a></p>
+        <p><strong>📧 Email:</strong><br> <a href="mailto:wanzlonely04@gmail.com">wanzlonely04@gmail.com</a></p>
+        <p><strong>📸 Instagram:</strong><br> <a href="https://instagram.com/zxuwan25" target="_blank">@zxuwan25</a></p>
+      </div>
+    </div>
   </footer>
 
-  <script>
-    const cart = [];
-    const cartCount = document.getElementById('cart-count');
-    const cartItems = document.getElementById('cart-items');
-    const cartTotal = document.getElementById('cart-total');
-    const cartPanel = document.getElementById('cart-panel');
-
-    function toggleCart() {
-      cartPanel.classList.toggle('active');
-    }
-
-    document.querySelectorAll('button').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const card = btn.parentElement;
-        const name = card.querySelector('h2').innerText;
-        const priceText = card.querySelector('.price').innerText.replace(/[^\d]/g, '');
-        const price = parseInt(priceText);
-        const existing = cart.find(item => item.name === name);
-
-        if (existing) {
-          existing.qty += 1;
-        } else {
-          cart.push({ name, price, qty: 1 });
-        }
-
-        updateCart();
-        showAddedNotification(name);
-      });
-    });
-
-    function updateCart() {
-      cartItems.innerHTML = '';
-      let total = 0;
-      let itemCount = 0;
-
-      cart.forEach(item => {
-        const itemEl = document.createElement('div');
-        itemEl.innerHTML = `<strong>${item.name}</strong><br>${item.qty} x Rp ${item.price.toLocaleString()}<hr style="border: 0.5px solid #333"/>`;
-        cartItems.appendChild(itemEl);
-        total += item.price * item.qty;
-        itemCount += item.qty;
-      });
-
-      cartCount.innerText = itemCount;
-      cartTotal.innerText = 'Total: Rp ' + total.toLocaleString();
-    }
-
-    function showAddedNotification(itemName) {
-      const notif = document.getElementById('added-notification');
-      notif.innerText = `${itemName} ditambahkan ke keranjang`;
-      notif.classList.add('show');
-      setTimeout(() => {
-        notif.classList.remove('show');
-      }, 2000);
-    }
-
-    function pesanSekarang() {
-      if (cart.length === 0) {
-        alert("Keranjang kosong.");
-        return;
-      }
-
-      let message = "📢 *PESANAN BARU - DEMONZ HOSTING* 📢%0A%0A";
-      message += "Halo Admin,%0ASaya ingin memesan produk berikut:%0A%0A";
-      cart.forEach(item => {
-        message += `➡️ *${item.name}* (${item.qty}x)%0A💵 Rp ${item.price * item.qty}.000%0A`;
-      });
-      const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-      message += `%0A💰 *Total:* Rp ${total}.000%0A%0A`;
-      message += `Mohon konfirmasi ketersediaan dan cara pembayaran. Terima kasih!`;
-
-      const phone = "628892119837";
-      window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
