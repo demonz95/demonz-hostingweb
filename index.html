@@ -179,19 +179,49 @@
       <div class="product-card">
         <h2>PANEL 4GB</h2>
         <p>Panel dengan resource 4GB untuk kebutuhan dasar Anda.</p>
-        <p class="price">Rp 3.000</p>
+        <p class="price">Rp 4.000</p>
         <button>+ Keranjang</button>
       </div>
       <div class="product-card">
-        <h2>PANEL 7GB</h2>
-        <p>Panel dengan resource 7GB untuk kebutuhan menengah.</p>
+        <h2>PANEL 5GB</h2>
+        <p>Panel dengan resource 5GB untuk kebutuhan ringan menengah.</p>
         <p class="price">Rp 5.000</p>
         <button>+ Keranjang</button>
       </div>
       <div class="product-card">
-        <h2>PANEL 10GB</h2>
-        <p>Panel dengan resource 10GB untuk kebutuhan tinggi.</p>
+        <h2>PANEL 6GB</h2>
+        <p>Panel dengan resource 6GB cocok untuk penggunaan stabil.</p>
+        <p class="price">Rp 6.000</p>
+        <button>+ Keranjang</button>
+      </div>
+      <div class="product-card">
+        <h2>PANEL 7GB</h2>
+        <p>Panel dengan resource 7GB untuk kebutuhan menengah tinggi.</p>
+        <p class="price">Rp 6.500</p>
+        <button>+ Keranjang</button>
+      </div>
+      <div class="product-card">
+        <h2>PANEL 8GB</h2>
+        <p>Panel dengan resource 8GB untuk penggunaan intensif.</p>
         <p class="price">Rp 7.000</p>
+        <button>+ Keranjang</button>
+      </div>
+      <div class="product-card">
+        <h2>PANEL 9GB</h2>
+        <p>Panel dengan resource 9GB untuk aplikasi berat.</p>
+        <p class="price">Rp 8.000</p>
+        <button>+ Keranjang</button>
+      </div>
+      <div class="product-card">
+        <h2>PANEL 10GB</h2>
+        <p>Panel dengan resource 10GB untuk kebutuhan sangat tinggi.</p>
+        <p class="price">Rp 9.000</p>
+        <button>+ Keranjang</button>
+      </div>
+      <div class="product-card">
+        <h2>PANEL UNLIMITED</h2>
+        <p>Panel dengan resource tidak terbatas untuk kebutuhan ekstrim.</p>
+        <p class="price">Rp 10.000</p>
         <button>+ Keranjang</button>
       </div>
     </div>
@@ -204,10 +234,9 @@
   <div class="cart-panel" id="cart-panel">
     <span class="close-cart" onclick="toggleCart()">&times;</span>
     <h2>Keranjang Belanja</h2>
-    <div id="cart-items">
-      <!-- Item keranjang tampil di sini -->
-    </div>
+    <div id="cart-items"></div>
     <div class="cart-total" id="cart-total">Total: Rp 0</div>
+    <button style="margin-top:20px;width:100%;background-color:#16a34a;">Pesan Sekarang</button>
   </div>
 
   <footer>
@@ -219,7 +248,6 @@
     const cartCount = document.getElementById('cart-count');
     const cartItems = document.getElementById('cart-items');
     const cartTotal = document.getElementById('cart-total');
-
     const cart = [];
 
     function toggleCart() {
@@ -227,21 +255,30 @@
     }
 
     document.querySelectorAll('button').forEach((btn, index) => {
-      btn.addEventListener('click', () => {
-        const card = btn.parentElement;
-        const name = card.querySelector('h2').innerText;
-        const priceText = card.querySelector('.price').innerText.replace(/[^\d]/g, '');
-        const price = parseInt(priceText);
-        const existing = cart.find(item => item.name === name);
+      if (btn.innerText.includes('+')) {
+        btn.addEventListener('click', () => {
+          const card = btn.parentElement;
+          const name = card.querySelector('h2').innerText;
+          const priceText = card.querySelector('.price').innerText.replace(/[^\d]/g, '');
+          const price = parseInt(priceText);
+          const existing = cart.find(item => item.name === name);
 
-        if (existing) {
-          existing.qty += 1;
-        } else {
-          cart.push({ name, price, qty: 1 });
-        }
+          if (existing) {
+            existing.qty += 1;
+          } else {
+            cart.push({ name, price, qty: 1 });
+          }
 
-        updateCart();
-      });
+          btn.innerText = '✓ Ditambahkan';
+          btn.style.backgroundColor = '#22c55e';
+          setTimeout(() => {
+            btn.innerText = '+ Keranjang';
+            btn.style.backgroundColor = '#3b82f6';
+          }, 1000);
+
+          updateCart();
+        });
+      }
     });
 
     function updateCart() {
