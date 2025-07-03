@@ -75,6 +75,32 @@ button {
   padding: 8px 15px;
   border-radius: 6px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #2563eb;
+}
+
+/* Efek saat produk ditambahkan */
+.added-effect {
+  animation: addedPop 0.4s ease-out;
+  background-color: #28a745 !important;
+  color: white !important;
+}
+
+@keyframes addedPop {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .contact {
@@ -93,19 +119,39 @@ footer {
   color: #999;
 }
 
-/* Move and resize cart icon */
-.cart-icon {
-    position: fixed !important;
-    bottom: 20px !important;
-    right: 20px !important;
-    z-index: 999 !important;
-    font-size: 24px !important;
-    padding: 10px !important;
+/* Tombol keranjang */
+.cart-fab {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  font-size: 28px;
+  background-color: #3b82f6;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 50%;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  cursor: pointer;
 }
 
-/* Enlarge Pesan button */
+#cart-count {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+/* Tombol WhatsApp */
 .contact-section .whatsapp-button, .whatsapp-button {
-    font-size: 18px !important;
-    padding: 12px 20px !important;
-    border-radius: 8px !important;
+  font-size: 18px !important;
+  padding: 12px 20px !important;
+  border-radius: 8px !important;
 }
