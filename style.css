@@ -51,7 +51,6 @@ main {
   background-color: #1f2a40;
   padding: 20px;
   border-radius: 10px;
-  position: relative;
 }
 
 .product-card h2 {
@@ -76,13 +75,6 @@ button {
   padding: 8px 15px;
   border-radius: 6px;
   cursor: pointer;
-}
-
-footer {
-  text-align: center;
-  margin: 40px 0 20px;
-  font-size: 13px;
-  color: #999;
 }
 
 .cart-icon {
@@ -129,10 +121,6 @@ footer {
   transform: translateX(0);
 }
 
-.cart-panel h2 {
-  margin-top: 0;
-}
-
 .close-cart {
   position: absolute;
   top: 10px;
@@ -147,20 +135,53 @@ footer {
   text-align: right;
 }
 
-#added-notification {
-  position: fixed;
-  bottom: 100px;
-  right: 25px;
-  background: #10b981;
+.whatsapp-button {
+  display: block;
+  margin-top: 20px;
+  background-color: #25D366;
   color: white;
-  padding: 8px 15px;
+  text-align: center;
+  padding: 12px;
   border-radius: 8px;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: 2000;
-  font-size: 14px;
+  text-decoration: none;
+  font-size: 16px;
 }
 
-#added-notification.show {
-  opacity: 1;
+footer {
+  background-color: #111827;
+  padding: 20px;
+  font-size: 14px;
+  color: #ccc;
+  border-top: 1px solid #333;
+}
+
+.footer-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.footer-section a {
+  color: #60a5fa;
+  text-decoration: none;
+}
+
+.footer-section a:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 600px) {
+  .footer-grid {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 480px) {
+  .overlay h1 {
+    font-size: 22px;
+  }
+  .overlay p {
+    font-size: 13px;
+  }
 }
