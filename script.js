@@ -7,11 +7,23 @@ document.querySelectorAll("button[data-name]").forEach(btn => {
     const name = btn.dataset.name;
     const price = parseInt(btn.dataset.price);
     const existing = cart.find(item => item.name === name);
+
     if (existing) {
       existing.qty += 1;
     } else {
       cart.push({ name, price, qty: 1 });
     }
+
+    // Ubah tampilan tombol menjadi "✓ Ditambahkan"
+    btn.textContent = "✓ Ditambahkan";
+    btn.classList.add("added-effect");
+
+    // Kembalikan ke tampilan semula setelah delay
+    setTimeout(() => {
+      btn.textContent = `+ Keranjang`;
+      btn.classList.remove("added-effect");
+    }, 1500);
+
     updateCartCount();
   });
 });
