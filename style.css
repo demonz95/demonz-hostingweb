@@ -1,0 +1,94 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background-color: #0e0e0e;
+  color: #fff;
+}
+
+header {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+}
+
+.hero-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6);
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.overlay h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+  color: #00bfff;
+}
+
+.overlay p {
+  font-size: 16px;
+  color: #ddd;
+}
+
+main {
+  padding: 20px;
+}
+
+.product-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.product-card {
+  background-color: #1f2a40;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.product-card h2 {
+  margin: 0 0 10px;
+  color: #60a5fa;
+}
+
+.product-card p {
+  margin: 0 0 10px;
+}
+
+.price {
+  color: #22c55e;
+  font-weight: bold;
+}
+
+button {
+  margin-top: 10px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.contact {
+  margin-top: 40px;
+}
+
+.contact a {
+  color: #60a5fa;
+  text-decoration: none;
+}
+
+footer {
+  text-align: center;
+  margin: 40px 0 20px;
+  font-size: 13px;
+  color: #999;
+}
