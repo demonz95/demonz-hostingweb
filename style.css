@@ -92,3 +92,20 @@ footer {
   font-size: 13px;
   color: #999;
 }
+
+/* Move and resize cart icon */
+.cart-icon {
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    z-index: 999 !important;
+    font-size: 24px !important;
+    padding: 10px !important;
+}
+
+/* Enlarge Pesan button */
+.contact-section .whatsapp-button, .whatsapp-button {
+    font-size: 18px !important;
+    padding: 12px 20px !important;
+    border-radius: 8px !important;
+}
